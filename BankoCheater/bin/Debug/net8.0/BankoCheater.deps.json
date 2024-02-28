@@ -1,0 +1,68 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "BankoCheater/1.0.0": {
+        "dependencies": {
+          "Selenium.WebDriver": "4.18.1",
+          "Selenium.WebDriver.ChromeDriver": "122.0.6261.9400"
+        },
+        "runtime": {
+          "BankoCheater.dll": {}
+        }
+      },
+      "Newtonsoft.Json/13.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.1.25517"
+          }
+        }
+      },
+      "Selenium.WebDriver/4.18.1": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/WebDriver.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "Selenium.WebDriver.ChromeDriver/122.0.6261.9400": {}
+    }
+  },
+  "libraries": {
+    "BankoCheater/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Newtonsoft.Json/13.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+      "path": "newtonsoft.json/13.0.1",
+      "hashPath": "newtonsoft.json.13.0.1.nupkg.sha512"
+    },
+    "Selenium.WebDriver/4.18.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-x9Pkz+kzcZ6dToJFLiem36pp0xmIfu/DXFf3U7EaoFqdtYyLsDJB0e/v58NAghcPTrAwJMSduEAokBRFFCxAxg==",
+      "path": "selenium.webdriver/4.18.1",
+      "hashPath": "selenium.webdriver.4.18.1.nupkg.sha512"
+    },
+    "Selenium.WebDriver.ChromeDriver/122.0.6261.9400": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-u0kWy6d0mp0YxVVHg1+G6yuNi/2+O+eRejc3SdJ1Ep8akq4OsFBOw+VUsW9CAH2jIdX8DWBdsAcu2ZE6TFsA9g==",
+      "path": "selenium.webdriver.chromedriver/122.0.6261.9400",
+      "hashPath": "selenium.webdriver.chromedriver.122.0.6261.9400.nupkg.sha512"
+    }
+  }
+}
