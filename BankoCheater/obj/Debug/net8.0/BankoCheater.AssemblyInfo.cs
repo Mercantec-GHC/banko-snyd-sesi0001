@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BankoCheater")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4acaea128631b355172a9e557a919631cf4d6d30")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+90f44190cd5106b25d61f2018b68d89b433972e7")]
 [assembly: System.Reflection.AssemblyProductAttribute("BankoCheater")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BankoCheater")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

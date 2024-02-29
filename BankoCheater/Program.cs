@@ -1,5 +1,4 @@
-﻿using System.Xml.Linq;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 
@@ -16,19 +15,18 @@ namespace BankoCheater
             //opens a chrome browser and goes to the Banko website
             driver.Navigate().GoToUrl("https://mags-template.github.io/Banko/");
 
-            //identifies the username textbox  
+            //identifies the plade-id textbox  
             IWebElement textBox = wait.Until(drv => drv.FindElement(By.Id("tekstboks")));
 
-            //all the usernames for the different plader 
+            //all the plade-id's for the different plader 
             string[] names = { "seb1", "seb2", "seb3", "seb4", "seb5", "seb6", "seb7", "seb8", "seb9", "seb10" };
 
             //creates a dictionary that has the names and data as key and value pairs
             Dictionary<string, string[][]> nameToArrays = new Dictionary<string, string[][]>();
 
-
             foreach (var name in names)
             {
-                //enters the username value and clears it before the next name
+                //enters a plade-id and clears it before the next plade-id
                 textBox.Clear();
                 textBox.SendKeys(name);
 
@@ -38,7 +36,6 @@ namespace BankoCheater
 
                 //creates 3 arrays that contains 3 emty arrays
                 string[][] emptyArrays = new string[3][];
-
 
                 for (int i = 0; i < emptyArrays.Length; i++)
                 {
@@ -64,18 +61,84 @@ namespace BankoCheater
 
             }
 
-            Console.WriteLine("Enter the banko number that that was picked:  ");
-            string pickedNumber = Console.ReadLine();
+            //initializes a dictionary to keep track of counts
+            Dictionary<string, Dictionary<int, int>> counts = new Dictionary<string, Dictionary<int, int>>();
 
-            Console.WriteLine($"The picked number was: {pickedNumber}");
+            //array to keep track of names that have gotten a bingo with one row
+            List<string> namesWithBingo = new List<string>();
 
+            //array to keep track of names that have gotten a bingo with two rows
+            List<string> namesWith2Bingo = new List<string>();
 
+            while (true)
+            {
+                Console.WriteLine("Enter the banko number that was picked (or 'quit' to exit): ");
+                string pickedNumber = Console.ReadLine();
 
+                //checks if the user wants to quit
+                if (pickedNumber.ToLower() == "quit")
+                    break;
 
+                Console.WriteLine($"The picked number was: {pickedNumber}");
 
-            Thread.Sleep(TimeSpan.FromSeconds(30));
+                //iterates over each name and their arrays
+                foreach (var kvp in nameToArrays)
+                {
+                    string name = kvp.Key;
+                    string[][] arrays = kvp.Value;
 
-            driver.Quit();
+                    for (int i = 0; i < arrays.Length; i++)
+                    {
+                        //checks if the picked number exists in the current row
+                        if (arrays[i].Contains(pickedNumber))
+                        {
+                            Console.WriteLine($"{pickedNumber} was found in Array: {name}, Row: {i + 1}");
+
+                            //checks if the counts dictionary contains the array name and initializes one if it doesn't
+                            if (!counts.ContainsKey(name))
+                            {
+                                counts[name] = new Dictionary<int, int>();
+                            }
+
+                            //checks if the dictionary contains the row number and initializes the count for that row to 0 by adding an entry with the row number as the key.
+                            if (!counts[name].ContainsKey(i))
+                            {
+                                counts[name][i] = 0;
+                            }
+
+                            counts[name][i]++;
+                            
+                            //shows bingo banko and then gets rid of the row
+                            if (counts[name][i] == 5 && namesWith2Bingo.Contains(name))
+                            {
+                                Console.WriteLine($"Bingo Banko!!! all the rows at Array: {name}, has been filed");
+                                counts[name][i] = -1;
+                                break;
+                            }
+
+                            //shows bingo with one row then gets rid of the row and adds the name to a list
+                            if (counts[name][i] == 5 && !namesWithBingo.Contains(name))
+                            {
+                                Console.WriteLine($"Bingo på Array: {name}, Row: {i + 1}");
+                                counts[name][i] = -1;
+                                namesWithBingo.Add(name);
+                                break;
+                            }
+
+                            //shows bingo with two rows then gets rid of the row and adds the name to a second list
+                            if (counts[name][i] == 5 && namesWithBingo.Contains(name))
+                            {
+                                Console.WriteLine($"Bingo with two rows at Array: {name}, the second Row: {i + 1}");
+                                counts[name][i] = -1;
+                                namesWith2Bingo.Add(name);
+                                break;
+                            } 
+                        }
+                    }
+                }
+            }
+        //quits the chrome browser 
+        driver.Quit();
         }
     }
 }
